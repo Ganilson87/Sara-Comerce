@@ -1,0 +1,73 @@
+{% extends "index.html" %}
+{% block title %}Minha Barraca{% endblock %}
+
+{% block content %}
+<br>
+<div class="card fixed">
+  <img src="" alt="">
+  <div class="card-body">
+    <h4 class="card-title text-lg-center">{{user.first_name|capfirst}}</h4>
+    <p class="card-text"></p>
+    <div class="text-warning">
+        {% for empresa in empresa_objects %}
+    
+        <div class="alert alert-danger" role="alert">
+            <h4 class="alert-heading">{{empresa.nome_empresa | capfirst}}</h4>
+            <p>Titular: {{empresa.titular|capfirst}}</p>
+            <p>Tipo de empresa: {{empresa.empresa_tipo|capfirst}}</p>
+            <p>Localização : {{empresa.localizacao|capfirst}}</p>
+            <p>Tipo de Produto: {{empresa.Tipo_prod|capfirst}}</p>
+            
+            
+        </div>
+            {% empty %}
+            
+        
+          <p class="btn btn-danger">Sem nenhuma conta adicionada</p>
+        
+            {% endfor %}
+    </div>
+    <a href="{% url 'form_produto' %}" class="btn btn-primary pull-right">Adicionar Produtos</a>
+    <a href="#" class="btn btn-primary pull-right">Estatistica</a>
+    <a href="#" class="btn btn-primary pull-right ">Promover Barraca</a>
+
+
+</div>
+
+</div>
+
+
+<br>
+<div class="alert alert-primary" role="alert">
+    <h4 class="alert-heading">Meus Produtos</h4>
+
+    {% for produto in produto_objects %}
+  
+    <div class="card m-2" id="card" style="width: 250px;">
+          
+      <img src="{{produto.img}}" alt="">
+        <div class="card-body">
+  
+            <h5 class="card-title">{{produto.nome_prod|capfirst}}</h5>
+            <small>{{produto.usuario.first_name | capfirst}}</small>
+            <p class="text-success">{{produto.prec_prod}} KZ</p>
+                <a href="#" class="btn btn-success">Comprar</a>
+  
+            <a href="#" class="text-success">Perfil da Loja</a>
+  
+            </p>
+  
+  
+        </div>
+    </div>
+    {% empty %}
+    
+  
+  <p class="btn btn-danger m-2">Sem produtos Adicionados</p>
+  
+    {% endfor %}
+  </div>
+  
+</div>
+
+{% endblock %}

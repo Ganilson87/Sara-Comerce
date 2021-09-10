@@ -1,0 +1,107 @@
+{% extends 'index.html' %}
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<div class="container">
+    <div class="card">
+        <img src="" alt="">
+        <div class="card-body">
+          <h5 class="card-title">    <h2>Finalizar Compras</h2>
+          </h5>
+          <p class="card-text"></p>
+          <ul class="list-group" id="list_prod">
+            <li class="list-group-item d-flex justify-content-between align-items-center active">
+              Suas compras
+            </li>
+            
+
+          </ul>
+        <br>
+          
+          <a href=" {% url 'index' %}" class="btn btn-warning"><-Voltar a loja!</a>
+
+          <a href=" {% url 'index' %}" class="btn btn-dark">Finalizar</a>
+          <a href=" {% url 'index' %}" onclick="apagar()" class="btn btn-danger">Cancelar</a>
+
+        </div>
+      </div>
+</div>
+ 
+<script>
+   if(localStorage.getItem('cart')==null){
+    var cart = {}; 
+
+  }
+  else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+    
+  }
+ for(item in cart){
+   let nome = cart[item][1];
+   let quant = cart[item][0];
+
+   itemshow = `<li class="list-group-item d-flex justify-content-between align-items-center">
+    ${nome} ${quant}    
+    <span class="badge badge-secondary badge-pill">
+       <a href="" class="badge badge-danger badge-pill">Remover do carrinho</a>
+ 
+  </li>    `
+  $('#list_prod').append(itemshow);
+ }
+ function apagar(cart){
+  localStorage.removeItem('cart');
+  window.confirm('Deseja mesmo Limpar seu carrinho')
+
+}
+  </script>
+<!-- add 'footer' snippet in css -->
+<br>
+<br>
+<br>
+<br>
+<div class="footer-v1 bg-img">
+  <div class="footer no-margin">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="headline"><p>Exams</p></div>
+          <ul class="list-unstyled link-list">
+            <li><a href="#">Exam1</a></li>
+            <li><a href="#">Exam2</a></li>
+            <li><a href="#">Exam3/a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <div class="headline"><p>Resources</p></div>
+          <ul class="list-unstyled link-list">
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <div class="headline"><p>Support</p></div>
+          <address>
+            <ul class="list-unstyled link-list">
+              <li><a href="#">Contact Us</a></li>
+              <li>
+                <a href="#"><i class="fa fa-envelope"></i>support@company.com</a>
+              </li>
+            </ul>
+          </address>
+        </div>
+        <div class="col-md-3">
+          <div class="headline"><p>Company</p></div>
+          <ul class="list-unstyled link-list">
+            <li><a href="#">About Us</a></li>
+            <li> <a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">FAQs</a></li>
+            <li><a href="#">Cancellation/Rescheduling policy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  {% endblock  %}

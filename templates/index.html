@@ -1,0 +1,302 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Sara|Serviço de atendimento rápido{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css'%}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-grid.css'%}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.css'%}">
+
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'jquery/jquery.js' %}"></script>
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+
+
+
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <link rel="shortcut icon" href="" type="image/x-icon">
+
+    </head>
+<body>
+<!-- Nav tabs -->
+{% block nav %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <a class="navbar-brand" href="{% url 'index' %}"> <h3>E-SARA |</h3> </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse " id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+      
+
+
+    </ul>
+ <ul class="navbar-nav my-2 my-lg-0  ">
+       <li class="nav-item active ">
+          <button id="cart" data-html="true" type="button" class="nav-link btn btn-primary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Sem nada no carrinho">
+            Meu Carrinho</button>
+      </li> 
+      
+        <li class="nav-item active ">
+        <a class="nav-link btn btn-primary text-warning" href="">Ser Frequente</a>
+      </li>
+      <li class="nav-item active ">
+        <a class="nav-link btn btn-primary" href="">Sobre</a>
+      </li>
+  
+ </ul>
+  </div>
+</nav>
+{% endblock  %}
+
+<br>                           
+                                      
+{% block content %}
+
+<div class="container " style="margin-top: 50px;">
+  <div class="alert alert-primary alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <p><b>E-SARA</b>, o seu novo ecommerce, com os preços mais acessiveis para o seu bolso
+      desde produtos de primeira necessidade e outros mais, com as melhores lojas de Angola Cadastradas mão há chances de não encontrar o que procura!!!</p>
+  </div>
+  
+  <script>
+    $(".alert").alert();
+  </script>
+
+   <div class="alert alert-primary" role="alert">
+    <!-- Nav tabs -->
+
+<div class=" text-center">
+  <a href="" type="button" class="btn btn-outline-success">
+    Produtos Alimentares
+  </a>
+  <a href="?" type="button" class="btn btn-outline-danger">
+    Bebidas
+  </a>
+  <a href="" type="button" class="btn btn-outline-primary">
+    Cosmétios
+  </a>
+  <a href="" type="button" class="btn btn-outline-dark">
+    Produtos Limpeza
+  </a>
+      <a href="" type="button" class="btn btn-outline-success">
+    Produtos Alimentares
+  </a>
+  <a href="?" type="button" class="btn btn-outline-danger">
+    Bebidas
+  </a>
+  <a href="" type="button" class="btn btn-outline-primary">
+    Cosmétios
+  </a>
+  <a href="" type="button" class="btn btn-outline-dark">
+    Produtos Limpeza
+  </a>  <a href="" type="button" class="btn btn-outline-success">
+    Produtos Alimentares
+  </a>
+  <a href="?" type="button" class="btn btn-outline-danger">
+    Bebidas
+  </a>
+  <a href="" type="button" class="btn btn-outline-primary">
+    Cosmétios
+  </a>
+  <a href="" type="button" class="btn btn-outline-dark">
+    Produtos Limpeza
+  </a>
+      </a>
+
+</div>
+    
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="tab1Id" role="tabpanel"></div>
+      <div class="tab-pane fade" id="tab2Id" role="tabpanel"></div>
+      <div class="tab-pane fade" id="tab3Id" role="tabpanel"></div>
+      <div class="tab-pane fade" id="tab4Id" role="tabpanel"></div>
+      <div class="tab-pane fade" id="tab5Id" role="tabpanel"></div>
+    </div>
+    
+    <script>
+      $('#navId a').click(e => {
+        e.preventDefault();
+        $(this).tab('show');
+      });
+    </script>
+  </div>
+<h3>Encontre aqui as melhores Ofertas!</h3>
+<hr>
+<nav class="navbar navbar-expand-sm navbar-dark" style="background-color: #e3f2fd;">
+
+    <form action="" class=" form-check-inline">
+        <input class="form-control mr-sm-2" name="pesquisar" type="text" style="width: 820px;" placeholder="O que você procura? ">
+  
+        <button class="btn btn-outline-success my-2 my-sm-2" style="width: 200px;" type="submit">Pesquisar</button>
+ 
+    </form>
+     
+</nav>
+<div class="row m-4">
+    
+  {% for produto in produto_objects %}
+
+  <div class="card m-2 rounded-top " id="card" style="width: 330px;">
+    <img src="{{produto.img}}" class="img-fluid  rounded"   alt="">
+
+      <div class="card-body">
+        {% if produto.promovido == True %}
+        <small class=" badge badge-warning">Promoção!!</small>
+
+        {% endif %}
+          <h5 id="nm{{produto.id}}" class="card-title">{{produto.nome_prod|capfirst}}</h5>
+           <p class="text-success">{{produto.prec_prod}} KZ</p>
+              <button id="{{produto.id}}" href="#" class="btn atc btn-success">Adicionar ao Carrinho</button>
+         
+          <a href="Produto/{{produto.id}} " class="badge badge-dark">Ver Despacho</a>
+
+          </p>
+
+         
+
+      </div>
+  </div>
+   
+  {% empty %}
+  
+
+<p class="text-center">Sem Resultados da pequisa</p>
+
+  {% endfor %}
+
+
+</div>
+<div class=" text-center">
+  <ul class="pagination">
+       {% if produto_objects.has_previous %}
+      <a href="?pagina={{produto_objects.previous_page_number}}" class="btn btn-primary">Anterior</a>
+  
+      {% endif %}
+      <a href="" class="btn btn-dark">Recarregar</a>
+
+       {% if produto_objects.has_next %}
+      <a href="?pagina={{produto_objects.next_page_number}}" class="btn btn-primary">Proximo</a>
+  
+      {% endif %}
+  
+  </ul>
+
+
+</div>
+<h2>Lojas</h2>
+<div class=" row text-center">
+  <div class="card m-2 rounded-top " id="card" style="width: 200px;">
+    <img src="{{produto.img}}" class="img-fluid  rounded"   alt="">
+    
+      <div class="card-body">
+                                                                                                                                         
+          <h5 id="nm{{produto.id}}" class="card-title">Ganilson Garcia</h5>
+           <p class="text-success">empresário</p>
+
+ 
+                            
+          </p>
+
+         
+
+      </div>
+  </div> <div class="card m-2 rounded-top " id="card" style="width: 200px;">
+    <img src="{{produto.img}}" class="img-fluid  rounded"   alt="">
+
+      <div class="card-body">
+                                                                                                                                         
+          <h5 id="nm{{produto.id}}" class="card-title">Ganilson Garcia</h5>
+           <p class="text-success">empresário</p>
+
+                            
+          </p>
+
+         
+
+      </div>
+  </div> <div class="card m-2 rounded-top " id="card" style="width: 200px;">
+    <img src="{{produto.img}}" class="img-fluid  rounded"   alt="">
+
+      <div class="card-body">
+                                                                                                                                         
+          <h5 id="nm{{produto.id}}" class="card-title">Ganilson Garcia</h5>
+           <p class="text-success">empresário</p>
+ </p>
+
+ 
+      </div>
+  </div>
+</div>
+ 
+ {% endblock %}
+<script>
+  console.log('RODANDO!')
+  if(localStorage.getItem('cart')==null){
+    var cart = {}; 
+
+  }
+  else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+  }
+  function apagar(){
+    localStorage.removeItem('cart')
+
+  }
+  $(document).on('click','.atc',function(){
+    console.log("Alguém clicou o butão do carrinho");
+     var item_id = this.id.toString();
+     console.log(item_id);
+     if(cart[item_id]!=undefined){
+       quant = cart[item_id][0] + 1;
+       cart[item_id][0] = quant;
+     }
+     else{
+      quant = 1 ;
+      nome =  document.getElementById("nm"+item_id).innerHTML;
+      cart[item_id]=[quant, nome];
+      }
+     console.log(cart)
+     localStorage.setItem('cart',JSON.stringify(cart));
+     document.getElementById("cart").innerHTML = "Meu Carrinho("+Object.keys(cart).length+")";
+     })
+     mostra(cart);
+     function mostra(cart){
+       var cartshow = "";
+       cartshow += "<h5>Meus Itens</h5> <hr>";
+       var cartindex = 1;
+       for(var x in cart){
+         cartshow +=cartindex;
+         cartshow +=  document.getElementById( "nm"+x).innerHTML+"<hr>";
+         cartindex += 1;
+        }
+      
+        cartshow += "     <a href=' {% url 'checkout' %} ' class=' row btn btn-dark text-center'>Comprar </a> " 
+        cartshow += "     <a href=' {% url 'checkout' %} ' class='row btn btn-danger text-center'>Limpar</a>" 
+
+        $('[data-toggle="popover"]').popover();
+        document.getElementById("cart").setAttribute('data-content',cartshow+'');
+  
+        }
+
+       function apagar(){
+          localStorage.removeItem('cart')
+      
+        }
+  </script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+{% extends 'index.html' %}
+{% block title %}Despacho| {{object.nome_prod}}{% endblock %}
+{% block content %}
+<div class="container">
+  <br>
+<br> 
+<div class="row m-auto">
+  <div class="card" style="width: 700px;">
+    <img src="" alt="">
+    <div class="card-body">
+
+      <h4 class="card-title">{{object.nome_prod}} </h4>
+      <img src="http://127.0.0.1:8000/{{produto.img}}" width="400px" class="img-fluid  rounded" alt="">
+      <br>
+      <br>
+      <h4>Descrição</h4>
+      <p class=" text-justify">{{produto.descr}}</p>
+
+      <small class=" badge badge-dark">{{produto.data   }}</small>
+
+     </div>
+  </div>
+  <br>
+  <br>
+  <div class="card m-md-auto" style="width: 300px;">
+    <br>
+    <h5 class=" text-dark text-center" >Informações de produto</h5> </h5>
+    <div class="card-body">
+      <div class="card">
+      <div class="card-body">
+        {% if produto.promovido == True %}
+        <small class=" badge badge-warning">Ainda em Promoção!!</small>
+        <br>
+        Paga Um leva dois!
+         {% endif %}
+        {% if produto.disponibilidade == True %}
+        <h5>Acções</h5>
+
+   <div class=" text-center">
+<p>                  <button id="{{produto.id}}" href="#" class="btn atc btn-success">Adicionar ao Carrinho</button>
+
+</p>
+    <a href="class btn-success" >Adicionar e Comprar</a>
+
+   </div>
+        {% else %}
+        <div class=" text-center">
+
+        <small class=" badge badge-danger">Sem exemplares em stook <br> 
+        </small>
+        <hr>
+  <a href="http://" class=" btn btn-primary">Deixar lembrete</a>
+   
+</div>
+
+        {% endif %}
+      </div>
+      <a  class=" badge badge-pill text-center">Deixar Criticas</a>
+      </div>
+      
+      
+    </div>
+  </div>
+</div>
+</div>
+<script>
+  console.log('RODANDO!')
+  if(localStorage.getItem('cart')==null){
+    var cart = {}; 
+
+  }
+  else{
+    cart = JSON.parse(localStorage.getItem('cart'));
+  }
+  $(document).on('click','.atc',function(){
+    console.log("Alguém clicou o butão do carrinho");
+     var item_id = this.id.toString();
+     console.log(item_id);
+     if(cart[item_id]!=undefined){
+       quant = cart[item_id][0] + 1;
+     }
+     else{
+      quant = 1 ;
+      nome =  document.getElementById("nm"+item_id).innerHTML;
+      cart[item_id]=[quant]
+      }
+     console.log(cart)
+     localStorage.setItem('cart',JSON.stringify(cart));
+     document.getElementById("cart").innerHTML = "Meu Carrinho("+Object.keys(cart).length+")";
+     })
+     mostra(cart);
+     function mostra(cart){
+       var cartshow = "";
+       cartshow += "<h5>Seu carrinho</h5> <hr>";
+       var cartindex = 1;
+       for(var x in cart){
+         cartshow +=cartindex;
+         cartshow +=  document.getElementById("nm"+x).innerHTML + "Qty:" + cart[x]+"<hr>";
+         cartindex += 1;
+        }
+        cartshow += "     <a href=' {% url 'checkout' %} ' class=' row btn btn-dark text-center'>Realizar Checkout </a> " 
+        cartshow += "     <a href=' {% url 'checkout' %} ' class='row btn btn-danger text-center'>Limpar</a>" 
+
+        $('[data-toggle="popover"]').popover();
+        document.getElementById("cart").setAttribute('data-content',cartshow+'');
+  
+        }
+
+  </script>
+{% endblock %}
