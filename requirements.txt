@@ -1,2 +1,2 @@
-CD, 
-Angofriends123
+Django==4.0.5
+django-crispy-forms==1.14.0
